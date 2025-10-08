@@ -1,0 +1,71 @@
+package JavaAIPractice;
+
+import java.util.Scanner;
+
+public class GradeCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the number of scores: ");
+        int numScores = scanner.nextInt();
+        
+        if (numScores <= 0) {
+            System.out.println("No scores entered. Exiting.");
+            scanner.close();
+            return;
+        }
+        
+        double[] scores = new double[numScores];
+        System.out.println("Enter the " + numScores + " scores:");
+        for (int i = 0; i < numScores; i++) {
+            System.out.print("Score " + (i + 1) + ": ");
+            scores[i] = scanner.nextDouble();
+        }
+        
+        double average = calculateAverage(scores);
+        System.out.printf("Average: %.1f%n", average);  // Formatted to 1 decimal place like the example
+        
+        char grade = getLetterGrade(average);
+        System.out.println("Grade: " + grade);
+        
+        checkPassStatus(average, grade);
+        
+        scanner.close();
+    }
+    
+    // Method to calculate average using array
+    public static double calculateAverage(double[] scores) {
+        double sum = 0;
+        for (double score : scores) {
+            sum += score;
+        }
+        return sum / scores.length;
+    }
+    
+    // Method using switch to get letter grade
+    public static char getLetterGrade(double avg) {
+        int roundedAvg = (int) Math.round(avg);
+        switch (roundedAvg / 10) { // Groups by tens
+            case 10:
+            case 9:
+                return 'A';
+            case 8:
+                return 'B';
+            case 7:
+                return 'C';
+            case 6:
+                return 'D';
+            default:
+                return 'F';
+        }
+    }
+    
+    // Method using conditionals to check pass/fail
+    public static void checkPassStatus(double avg, char grade) {
+        if (avg >= 60) {
+            System.out.println("Status: Passed! Keep up the great work!");
+        } else {
+            System.out.println("Status: Failed. Study harder next time!");
+        }
+    }
+}
