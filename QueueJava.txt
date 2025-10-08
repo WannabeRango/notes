@@ -1,0 +1,70 @@
+package JavaAIPractice;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class QueueJava {
+    
+    // Method to display the queue
+    public static void displayQueue(Queue<Integer> queue) {
+        if (queue.isEmpty()) {
+            System.out.println("The queue is empty.");
+        } else {
+            System.out.println("Current Queue: " + queue);
+        }
+    }
+
+    // Method to show the menu
+    public static void showMenu() {
+        System.out.println("\n--- QUEUE MENU ---");
+        System.out.println("1. Enqueue (Add element)");
+        System.out.println("2. Dequeue (Remove element)");
+        System.out.println("3. Display Queue");
+        System.out.println("4. Exit");
+        System.out.print("Enter your choice: ");
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Queue<Integer> queue = new LinkedList<>();
+        int choice;
+
+        do {
+            showMenu();
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter number to enqueue: ");
+                    int num = sc.nextInt();
+                    queue.add(num); // enqueue
+                    System.out.println(num + " added to the queue.");
+                    break;
+
+                case 2:
+                    if (queue.isEmpty()) {
+                        System.out.println("Queue is empty! Nothing to remove.");
+                    } else {
+                        int removed = queue.remove(); // dequeue
+                        System.out.println(removed + " removed from the queue.");
+                    }
+                    break;
+
+                case 3:
+                    displayQueue(queue);
+                    break;
+
+                case 4:
+                    System.out.println("Exiting... Thank you!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Try again!");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
