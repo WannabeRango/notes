@@ -1,0 +1,93 @@
+package javaai;
+
+import java.util.Scanner;
+
+public class ArrayProcessorBot {
+
+    // Method to input values
+    public static void inputValues(int[] arr, Scanner sc) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("Enter value " + (i + 1) + ": ");
+            arr[i] = sc.nextInt();
+        }
+    }
+
+    // Method to find maximum
+    public static int findMax(int[] arr) {
+        int max = arr[0];
+        for (int num : arr) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+
+    // Method to find minimum
+    public static int findMin(int[] arr) {
+        int min = arr[0];
+        for (int num : arr) {
+            if (num < min) {
+                min = num;
+            }
+        }
+        return min;
+    }
+
+    // Method to compute average
+    public static double computeAverage(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return (double) sum / arr.length;
+    }
+
+    // Method to classify pass/fail (assuming passing grade is 75)
+    public static void classifyPassFail(double average) {
+        System.out.print("Remarks: ");
+        if (average >= 75) {
+            System.out.println("PASSED 🎉");
+        } else {
+            System.out.println("FAILED ❌");
+        }
+    }
+
+    // Method to classify even/odd
+    public static void classifyEvenOdd(int[] arr) {
+        System.out.println("\nEven/Odd Classification:");
+        for (int num : arr) {
+            if (num % 2 == 0) {
+                System.out.println(num + " is EVEN");
+            } else {
+                System.out.println(num + " is ODD");
+            }
+        }
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("How many values do you want to enter? ");
+        int n = sc.nextInt();
+
+        int[] values = new int[n];
+
+        // Input values
+        inputValues(values, sc);
+
+        // Process & display results
+        System.out.println("\n===== RESULTS =====");
+        System.out.println("Maximum: " + findMax(values));
+        System.out.println("Minimum: " + findMin(values));
+
+        double avg = computeAverage(values);
+        System.out.println("Average: " + avg);
+
+        classifyPassFail(avg);
+        classifyEvenOdd(values);
+
+        sc.close();
+    }
+}
