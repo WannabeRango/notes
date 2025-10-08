@@ -1,0 +1,15 @@
+public class DivisionWithoutSlash {
+    public static void main(String[] args) {
+        int dividend = 48;
+        int divisor = 6;
+        int quotient = 0;
+
+        while (dividend >= divisor) {
+            dividend -= divisor; // subtract divisor from dividend
+            quotient++;          // count how many times
+        }
+
+        System.out.println("Quotient = " + quotient);
+        System.out.println("Remainder = " + dividend);
+    }
+}

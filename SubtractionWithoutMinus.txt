@@ -1,0 +1,11 @@
+public class SubtractionWithoutMinus {
+    public static void main(String[] args) {
+        int a = 15, b = 7;
+
+        for (int i = 0; i < b; i++) {
+            a--; // decrease a b times
+        }
+
+        System.out.println("Result = " + a); // Output: 8
+    }
+}
