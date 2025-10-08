@@ -1,0 +1,38 @@
+package javaai;
+
+import java.util.Scanner;
+
+public class EvenOddArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter " + n + " numbers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int evenCount = 0, oddCount = 0;
+
+        System.out.println("\nEven and Odd numbers:");
+        for (int num : arr) {
+            if (num % 2 == 0) { 
+                System.out.println(num + " is EVEN");
+                evenCount++;
+            } else {
+                System.out.println(num + " is ODD");
+                oddCount++;
+            }
+        }
+
+        System.out.println("\nTotal Even: " + evenCount);
+        System.out.println("Total Odd: " + oddCount);
+
+        sc.close();
+    }
+}
+
