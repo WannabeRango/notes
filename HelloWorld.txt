@@ -1,0 +1,15 @@
+package javaai;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        // Declare and initialize a char array with "Hello World" characters
+        char[] helloArray = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd'};
+        
+        // Print "Hello World" by iterating through the array
+        // System.out.print("Hello World: ");
+        for (int i = 0; i < helloArray.length; i++) {
+            System.out.print(helloArray[i]);
+        }
+        System.out.println(); // New line
+    }
+}
