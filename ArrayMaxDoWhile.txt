@@ -1,0 +1,59 @@
+package javaai;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ArrayMaxDoWhile {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char choice;
+
+        do {
+            // Ask user how many numbers to enter
+            System.out.print("Enter how many numbers: ");
+            int n = sc.nextInt();
+
+            int[] numbers = new int[n];
+
+            // Input numbers
+            System.out.println("Enter " + n + " numbers:");
+            for (int i = 0; i < n; i++) {
+                numbers[i] = sc.nextInt();
+            }
+
+            int max = numbers[0];
+            int min = numbers[0];
+
+            // Find max and min
+            for (int i = 1; i < numbers.length; i++) {
+                if (numbers[i] > max) max = numbers[i];
+                if (numbers[i] < min) min = numbers[i];
+            }
+
+            // Sort for median
+            Arrays.sort(numbers);
+            double middleValue;
+            if (numbers.length % 2 == 0) {
+                middleValue = (numbers[numbers.length / 2 - 1] + numbers[numbers.length / 2]) / 2.0;
+            } else {
+                middleValue = numbers[numbers.length / 2];
+            }
+
+            // Display results
+            System.out.println("\nThe numbers in sorted order: " + Arrays.toString(numbers));
+            System.out.println("The maximum value is: " + max);
+            System.out.println("The minimum value is: " + min);
+            System.out.println("The median value is: " + middleValue);
+
+            // Ask if user wants to try again
+            System.out.print("\nDo you want to enter another set of numbers? (Y/N): ");
+            choice = sc.next().charAt(0);
+
+            System.out.println();
+
+        } while (choice == 'Y' || choice == 'y');
+
+        System.out.println("Program ended. Thank you!");
+        sc.close();
+    }
+}
