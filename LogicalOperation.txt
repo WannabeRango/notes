@@ -1,0 +1,87 @@
+package JavaAIPractice;
+
+import java.util.Scanner;
+
+public class LogicalOperation {
+
+    public static Double performOperation(double num1, double num2, int choice) {
+        switch (choice) {
+            case 1:
+                return num1 + num2;
+            case 2:
+                return num1 - num2;
+            case 3:
+                return num1 * num2;
+            case 4:
+                if (num2 == 0) {
+                    System.out.println("Error: Division by zero!");
+                    return null;
+                } else {
+                    return num1 / num2;
+                }
+            default:
+                System.out.println("Invalid choice!");
+                return null; 
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        char again;
+
+        do {
+            System.out.print("\nEnter first number: ");
+            double num1 = input.nextDouble();
+            System.out.print("Enter second number: ");
+            double num2 = input.nextDouble();
+
+            System.out.println("\n=== MENU ===");
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Multiplication");
+            System.out.println("4. Division");
+            System.out.print("Enter your choice (or 0 for auto logic): ");
+            int choice = input.nextInt();
+
+            Double result = null; 
+
+            if (choice == 0) {
+                
+                if (num1 % 2 == 0 && num2 % 2 == 0) {
+                    System.out.println("Both numbers are even. Performing automatic multiplication...");
+                    result = num1 * num2;
+                } else if (num1 % 2 != 0 && num2 % 2 != 0) {
+                    System.out.println("Both numbers are odd. Performing automatic addition...");
+                    result = num1 + num2;
+                } else if (num1 > num2) {
+                    System.out.println("First number is greater. Performing automatic subtraction...");
+                    result = num1 - num2;
+                } else if (num2 > num1) {
+                    if (num2 == 0) {
+                        System.out.println("Error: Cannot divide by zero.");
+                    } else {
+                        System.out.println("Second number is greater. Performing automatic division...");
+                        result = num1 / num2;
+                    }
+                } else {
+                    System.out.println("Numbers are equal. Performing addition...");
+                    result = num1 + num2;
+                }
+            } else {
+               
+                result = performOperation(num1, num2, choice);
+            }
+
+            if (result != null) {
+                System.out.println("Result: " + result);
+            }
+
+            System.out.print("\nDo you want to continue? (Y/N): ");
+            again = input.next().charAt(0);
+
+        } while (again == 'Y' || again == 'y');
+
+        System.out.println("\nProgram terminated. Thank you!");
+        input.close();
+    }
+}
