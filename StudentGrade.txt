@@ -1,0 +1,40 @@
+package javaai;
+
+import java.util.Scanner;
+
+public class StudentGradeAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input one student's grade
+        System.out.print("Enter the grade of the student: ");
+        int grade = sc.nextInt();
+
+        // Initialize values (all same since only one student)
+        int highest = grade;
+        int lowest = grade;
+        int sum = grade;
+
+        double average = (double) sum / 1;
+
+        // Display results
+        System.out.println("\n=== Student Grade Report ===");
+        System.out.println("Highest Grade: " + highest);
+        System.out.println("Lowest Grade: " + lowest);
+        System.out.println("Average Grade: " + average);
+
+        // Check pass/fail for the student
+        System.out.println("\nResult: ");
+        if (grade >= 97 && grade <= 99) {
+            System.out.println("WITH HIGHEST HONOR");
+        } else if (grade >= 95 && grade <= 97.4) {
+            System.out.println("WITH HIGH HONORS");
+        } else if (grade >= 90 && grade <= 95.4) {
+            System.out.println("WITH HONORS");
+        } else {
+            System.out.println("FAILED");
+        }
+
+        sc.close();
+    }
+}
