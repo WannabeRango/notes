@@ -1,0 +1,231 @@
+package javalinkedlistactivitydsa;
+
+import java.util.Scanner;
+
+class Node {
+    int studentNo;
+    String name;
+    String course;
+    int yearLevel;
+    Node next;
+}
+
+class LinkedList {  
+    Node head;
+    
+    // ✅ Insert at end
+    void insertEnd(int studentNo, String name, String course, int yearLevel) {
+        Node newNode = new Node();
+        newNode.studentNo = studentNo;
+        newNode.name = name;
+        newNode.course = course;
+        newNode.yearLevel = yearLevel;
+        newNode.next = null;
+        
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+        System.out.println("Student inserted at end successfully!");
+    }
+
+    // ✅ Insert at start
+    void insertStart(int studentNo, String name, String course, int yearLevel) {
+        Node newNode = new Node();
+        newNode.studentNo = studentNo;
+        newNode.name = name;
+        newNode.course = course;
+        newNode.yearLevel = yearLevel;
+        newNode.next = head;
+        head = newNode;
+        System.out.println("Student inserted at start successfully!");
+    }
+    
+    // ✅ Insert at index (0-based)
+    void insertAtIndex(int index, int studentNo, String name, String course, int yearLevel) {
+        Node newNode = new Node();
+        newNode.studentNo = studentNo;
+        newNode.name = name;
+        newNode.course = course;
+        newNode.yearLevel = yearLevel;
+        
+        if (index == 0) {
+            newNode.next = head;
+            head = newNode;
+            System.out.println("Student inserted at index 0 (start) successfully!");
+            return;
+        }
+
+        Node temp = head;
+        int count = 0;
+
+        while (temp != null && count < index - 1) {
+            temp = temp.next;
+            count++;
+        }
+
+        if (temp == null) {
+            System.out.println("Index out of range!");
+            return;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+        System.out.println("Student inserted at index " + index + " successfully!");
+    }
+
+    // Display all students
+    void display() {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        Node temp = head;
+        System.out.println("\n Sudent Records:");
+        while (temp != null) {
+            System.out.println(temp.studentNo + " - " + temp.name + " - " +
+                               temp.course + " - Year " + temp.yearLevel);
+            temp = temp.next;
+        }
+    }
+
+    // Search by student number
+    void search(int studentNo) {
+        Node temp = head;
+        boolean found = false;
+        while (temp != null) {
+            if (temp.studentNo == studentNo) {
+                System.out.println("\nRecord Found!");
+                System.out.println("Student No: " + temp.studentNo);
+                System.out.println("Name: " + temp.name);
+                System.out.println("Course: " + temp.course);
+                System.out.println("Year Level: " + temp.yearLevel);
+                found = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (!found) {
+            System.out.println("No Result Found");
+        }
+    }
+
+    // Remove by student number
+    void remove(int studentNo) {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+
+        if (head.studentNo == studentNo) {
+            head = head.next;
+            System.out.println("Record removed successfully!");
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null) {
+            if (temp.next.studentNo == studentNo) {
+                temp.next = temp.next.next;
+                System.out.println("Record removed successfully!");
+                return;
+            }
+            temp = temp.next;
+        }
+
+        System.out.println("No Result Found");
+    }
+}
+
+public class Codelinkedlist {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+
+        int choice;
+        do {
+            System.out.println("\n===== STUDENT LINKED LIST MENU =====");
+            System.out.println("[1] Insert at End");
+            System.out.println("[2] Insert at Start");
+            System.out.println("[3] Insert at Index");
+            System.out.println("[4] Display All");
+            System.out.println("[5] Search by Student No");
+            System.out.println("[6] Remove Student");
+            System.out.println("[7] Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1: // Insert at End
+                    System.out.print("Enter Student No: ");
+                    int no1 = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Name: ");
+                    String name1 = sc.nextLine();
+                    System.out.print("Enter Course: ");
+                    String course1 = sc.nextLine();
+                    System.out.print("Enter Year Level: ");
+                    int year1 = sc.nextInt();
+                    list.insertEnd(no1, name1, course1, year1);
+                    break;
+
+                case 2: // Insert at Start
+                    System.out.print("Enter Student No: ");
+                    int no2 = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Name: ");
+                    String name2 = sc.nextLine();
+                    System.out.print("Enter Course: ");
+                    String course2 = sc.nextLine();
+                    System.out.print("Enter Year Level: ");
+                    int year2 = sc.nextInt();
+                    list.insertStart(no2, name2, course2, year2);
+                    break;
+
+                case 3: // Insert at Index
+                    System.out.print("Enter Index Position: ");
+                    int index = sc.nextInt();
+                    System.out.print("Enter Student No: ");
+                    int no3 = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Name: ");
+                    String name3 = sc.nextLine();
+                    System.out.print("Enter Course: ");
+                    String course3 = sc.nextLine();
+                    System.out.print("Enter Year Level: ");
+                    int year3 = sc.nextInt();
+                    list.insertAtIndex(index, no3, name3, course3, year3);
+                    break;
+
+                case 4:
+                    list.display();
+                    break;
+
+                case 5:
+                    System.out.print("Enter Student No to Search: ");
+                    int searchNo = sc.nextInt();
+                    list.search(searchNo);
+                    break;
+
+                case 6:
+                    System.out.print("Enter Student No to Remove: ");
+                    int removeNo = sc.nextInt();
+                    list.remove(removeNo);
+                    break;
+
+                case 7:
+                    System.out.println("Exiting program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 7);
+    }
+}
